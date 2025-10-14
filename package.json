@@ -1,0 +1,24 @@
+{
+  "name": "@uttam-official/datepicker",
+  "version": "1.0.5",
+  "description": "A lightweight, material-inspired datepicker with month-year view switching.",
+  "main": "dist/uttam-material-datepicker.min.js",
+  "style": "dist/uttam-material-datepicker.css",
+  "author": "@uttam-official",
+  "url": "https://github.com/uttam-official/datepicker",
+  "license": "MIT",
+  "scripts": {
+    "build": "npx esbuild src/index.js --bundle --minify --outfile=dist/uttam-material-datepicker.min.js  --format=esm && copy src\\style.css dist\\uttam-material-datepicker.css"
+  },
+  "keywords": [
+    "datepicker",
+    "javascript",
+    "material-design",
+    "calendar",
+    "frontend",
+    "vanilla-js"
+  ],
+  "devDependencies": {
+    "esbuild": "^0.21.5"
+  }
+}

@@ -1,0 +1,133 @@
+.uttam-mdp * {
+    font-family: 'Poppins', sans-serif;
+}
+
+input.datepicker {
+    padding: 10px 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 250px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input.datepicker:focus {
+    border-color: #6200ea;
+    box-shadow: 0 0 4px rgba(98, 0, 234, 0.3);
+}
+
+#mdp-popup {
+    position: absolute;
+    display: none;
+    z-index: 9999;
+}
+
+.mdp-container {
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    background: #fff;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.mdp-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #6200ea;
+    color: #fff;
+    padding: 10px 15px;
+    font-weight: 500;
+    user-select: none;
+}
+
+.mdp-nav {
+    cursor: pointer;
+    font-size: 18px;
+    width: 30px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.mdp-nav:hover {
+    transform: scale(1.2);
+}
+
+.mdp-title {
+    cursor: pointer;
+    text-align: center;
+    flex-grow: 1;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+.mdp-title::after {
+    content: '▾';
+    font-size: 14px;
+    opacity: 0.8;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.mdp-title:hover::after {
+    transform: rotate(180deg);
+    opacity: 1;
+}
+
+.mdp-body {
+    padding: 10px;
+}
+
+.mdp-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+}
+
+.mdp-months,
+.mdp-years {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.mdp-day,
+.mdp-month,
+.mdp-year {
+    padding: 8px 0;
+    text-align: center;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.mdp-day:hover,
+.mdp-month:hover,
+.mdp-year:hover {
+    background: #e3d1ff;
+    transform: scale(1.05);
+}
+
+.mdp-day.selected {
+    background-color: #6200ea;
+    color: #fff;
+}
+
+.mdp-day.today {
+    border: 1px solid #e3d1ff;
+}
+
+.mdp-day-header {
+    font-weight: 600;
+    text-align: center;
+}
+
+.mdp-day.disabled {
+    color: #f0f0f0;
+    cursor: not-allowed;
+}
