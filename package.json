@@ -1,6 +1,6 @@
 {
   "name": "@uttam-official/datepicker",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A lightweight, material-inspired datepicker with month-year view switching.",
   "main": "dist/uttam-material-datepicker.min.js",
   "style": "dist/uttam-material-datepicker.css",
