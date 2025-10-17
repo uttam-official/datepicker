@@ -164,10 +164,41 @@ export function initDatepicker(selector = ".datepicker", options = {}) {
         input.addEventListener("focus", e => {
             const rect = input.getBoundingClientRect();
             popup.style.display = "block";
-            popup.style.top = rect.bottom + window.scrollY + "px";
+
+            // Render once to measure height
+            popup.innerHTML = "";
+            new MaterialDatePicker(popup, input, options);
+            const popupHeight = popup.offsetHeight || 350; // fallback height
+            popup.style.display = "none";
+
+            // Calculate available space
+            const spaceBelow = window.innerHeight - rect.bottom;
+            const spaceAbove = rect.top;
+
+            // Decide popup vertical position
+            let top;
+            if (spaceBelow < popupHeight && spaceAbove > popupHeight) {
+                // Show above
+                top = rect.top + window.scrollY - popupHeight - 8;
+            } else {
+                // Show below
+                top = rect.bottom + window.scrollY + 5;
+            }
+
+            // Show popup now
+            popup.style.display = "block";
+            popup.style.top = top + "px";
             popup.style.left = rect.left + "px";
 
-            // Determine initial date
+            // Ensure popup stays inside the viewport horizontally
+            const popupRect = popup.getBoundingClientRect();
+            if (popupRect.right > window.innerWidth) {
+                popup.style.left = (window.innerWidth - popupRect.width - 10) + "px";
+            } else if (popupRect.left < 0) {
+                popup.style.left = "10px";
+            }
+
+            // Determine initial date from input value (if valid)
             let initDate = new Date();
             if (input.value) {
                 const parts = input.value.split(/[-\/]/); // supports d-m-Y or d/m/Y
@@ -182,7 +213,6 @@ export function initDatepicker(selector = ".datepicker", options = {}) {
 
             new MaterialDatePicker(popup, input, { ...options, initDate });
         });
-
     });
 
     document.addEventListener("click", e => {
