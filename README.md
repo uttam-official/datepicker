@@ -1,7 +1,7 @@
 # 🟣 @uttam-official/datepicker
 
-A lightweight, elegant, **Material-style Datepicker** for modern web apps — built with vanilla JavaScript and CSS.  
-Supports **min/max date**, **custom date formats**, and **text field binding** out of the box.
+A lightweight, elegant, **Material-style Datepicker** for modern web apps - built with vanilla JavaScript and CSS.  
+Supports **date**, **datetime**, and **time** modes, **min/max date**, **custom date/time formats**, and **text field binding** out of the box.
 
 ---
 
@@ -10,6 +10,8 @@ Supports **min/max date**, **custom date formats**, and **text field binding** o
 - 🎨 Clean Material-inspired design  
 - 📅 Click-to-open popup datepicker  
 - 🧭 Month & Year navigation with smooth transitions  
+- 🧭 Date, DateTime, and Time picker types  
+- 🧭 12h/24h time support with AM/PM toggle  
 - 🔒 Min/Max date restrictions  
 - 🕒 Custom date format (e.g., `d-m-Y`, `m/d/Y`, etc.)  
 - 🧩 Easily attach to any text input  
@@ -44,7 +46,8 @@ yarn add @uttam-official/datepicker
 ### 3️⃣ Initialize the datepicker
 ```js
 window.initDatepicker('.datepicker', {
-    format: 'd-m-Y',        // Supported formats: d-m-Y, m/d/Y, Y-m-d
+    type: 'date',           // 'date' | 'datetime' | 'time'
+    format: 'd-m-Y',        // Date format
     minDate: '2024-01-01',  // Optional
     maxDate: '2025-12-31',  // Optional
 });
@@ -59,9 +62,33 @@ Your input field will now open a beautiful datepicker when focused.
 
 | Option | Type | Default | Description |
 |--------|------|----------|-------------|
+| `type` | `string` | `'date'` | Picker type: `'date'`, `'datetime'`, or `'time'` |
 | `format` | `string` | `'d-m-Y'` | Date format |
+| `timeFormat` | `string` | `'HH:mm'` or `'hh:mm A'` | Time format (default depends on `timeMode`) |
+| `timeMode` | `string` | auto | `'12'` or `'24'` (auto-inferred from `timeFormat`) |
+| `dateTimeSeparator` | `string` | `' '` | Separator between date and time |
+| `timeStepMinutes` | `number` | `1` | Minute step size (1-59) |
 | `minDate` | `string` / `Date` | `null` | Minimum selectable date |
 | `maxDate` | `string` / `Date` | `null` | Maximum selectable date |
+
+---
+
+## ⚙️ Supported Formats
+
+### Date tokens
+- `d` / `dd` = day  
+- `m` / `mm` = month  
+- `Y` / `YY` / `YYYY` = year  
+
+Examples: `d-m-Y`, `dd/mm/YYYY`, `Y-m-d`
+
+### Time tokens
+- `H` / `HH` = 24-hour  
+- `h` / `hh` = 12-hour  
+- `m` / `mm` = minutes  
+- `A` / `a` = AM/PM  
+
+Examples: `HH:mm`, `hh:mm A`, `h:mm a`
 
 ---
 
@@ -75,6 +102,24 @@ initDatepicker('.datepicker', {
   format: 'd-m-Y',
 });
 </script>
+```
+
+### DateTime example
+```js
+initDatepicker('.datetime', {
+  type: 'datetime',
+  format: 'd-m-Y',
+  timeFormat: 'HH:mm',
+});
+```
+
+### Time-only example
+```js
+initDatepicker('.time', {
+  type: 'time',
+  timeFormat: 'hh:mm A',
+  timeMode: '12',
+});
 ```
 
 ---
